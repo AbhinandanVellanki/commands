@@ -48,31 +48,6 @@ for filename in ./*; do mv "./$filename" "./$(echo "$filename" | sed -e 's/test.
 arp -a                                             # scan IP addresses on network
 sshpass -p robot-data3388 scp start.sh rd-dev@192.168.50.101:~/Desktop/HKPCFacialRecognition  # scp with a password
 ```
-## OSX
-```
-ipconfig getifaddr en0                             # get ip address
-```
-### How to run a GUI docker in OSX
-run xquartz
-```
-open -a XQuartz
-```
-make sure preferences/security is allowing connections from network clients
-```
-socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"
-```
-open a new terminal and run docker container
-```
-docker run -d -e DISPLAY=<ip address of computer>:0 <docker image>
-```
-alternatively, run with interactive mode then go into container
-```
-docker run -it -d -e DISPLAY=<ip address of computer>:0 <docker image>
-```
-then open a terminal in container 
-```
-docker exec -it <container name> /bin/bash
-```
 ## Docker
 
 ### How to run a python script inside a container 
@@ -165,6 +140,7 @@ git merge <new_branch>
 git push
 ```
 add a local branch <local branch> in repo1 to a new remote branch <new remote branch> in repo2
+    
 ```
 git remote add origin2 https://github.com/frederictwc/<repo2>.git
 git push origin2 <local branch>:<new remote branch>
@@ -195,3 +171,8 @@ open following link in browser
 ```
 <digits computer ip>:8888 
 ```
+## PIP
+Show all installed libraries with the version 
+```
+pip freeze
+``` 
